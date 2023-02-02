@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- bootstrap  cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+        <link rel="stylesheet" href="">
+        <link rel="manifest" href="../site.webmanifest">
+        <link rel="icon" href="../favicon.ico">
+  </head>
+  <body>
+    
+    <div class="container">
+      
+      <div class="bg night_bg"></div>
+      <div class="bg frosty_bg"></div>
+      <div class="bg sunny_bg"></div>
+      <div class="text_container">
+        <div class="degrees"><span>&ordm;</span></div>
+        <div class="place"></div>
+        <div class="weather"></div>
+      </div>
+      <div class="circle_container">
+        <div class="circle"></div>
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+      </div>
+      <div class="ground1 ground1_night"></div>
+      <div class="ground1 ground1_frosty"></div>
+      <div class="ground1 ground1_sunny"></div>
+      <div class="ground2 ground2_night"></div>
+      <div class="ground2 ground2_frosty"></div>
+      <div class="ground2 ground2_sunny"></div>
+    </div>
+    
+
+    <div class="container">
+      <div class="box">
+        <span id="span"></span>
+        <div class="content">
+          <div id="cover">
+            <form method="post" action="/">
+              <div class="tb">
+                <div class="td"><input type="text" name="citynames"  placeholder="Enter a city name..." autocomplete="off"></div>
+                <div class="td" id="s-cover">
+                  <button type="submit" style="outline: none;">
+                    <div id="s-circle"></div>
+                    <span></span>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <h1 style="color: rgba(245, 245, 245, 0.847);">Analyse current weather !</h1>
+          </div>
+         
+          
+        </div>
+      </div>
+      
+    </div>
+
+        
+            <div class="weather-info-container">
+
+                
+                    
+                            <% if(data !== null){%>
+
+                              
+                              <form method="post" action="/" style="margin-top: -5vh; padding-bottom: 5vh; height: 5vh;">
+                                <div class="tb" >
+                                  <div class="td"><input type="text" name="citynames"  placeholder="Enter a city name..." autocomplete="off" style="margin-top: -12vh;"></div>
+                                  <div class="td" id="s-cover">
+                                    <button type="submit">
+                                      <i class="ri-search-line"></i>
+                                      
+                                    </button>
+                                  </div>
+                                </div>
+                              </form>
+                               <style> 
+                            
+                              input[type="text"] {
+  width: 100%;
+  position: absolute;
+  height:70px;
+  font-size: 30px;
+  top: 2vh;
+  padding-left: 5.4vh;
+  z-index: 999999999;
+  line-height: 1;
+  background-color: red;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  /*opacity: 1;
+  transition: 0.5s;
+  animation: animate 2s ease-in-out infinite;*/
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  animation-delay: -1s;
+}  
+#s-cover{
+  position: absolute;
+  margin-top: -6.8vh;
+  margin-left: 43.5vh;
+  z-index: 999999999;
+  outline: none;
+}  
+#s-cover i{
+  font-size: 4.5vh;
+  background-color: red;
+  background: rgba(255, 255, 255, 0.184);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08); 
+  border-radius:1vh ;
+  outline: none;
+  padding: 1vh;
+} 
+#s-cover i:hover{
+  font-size: 4.1vh;
+  background-color: red;
+  background:#d05c5c71;
+  outline: none;
+  border-radius:1vh ;
+  padding: 1vh;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+}
+#s-cover button{
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+@media(max-width: 500px){
+  #s-cover{
+    position: relative;
+  bottom: 6.5vh;
+  margin-left: 40vh;
+  z-index: 9999999999999999999999;
+  outline: none;
+} 
+}
+            
+                              </style>
+                               
+                               <div id="c2">
+                                 <div id="c3">
+                                  
+                                    <h4>CURRENT WEATHER</h4>
+                                    <p> <span id="datetime"></span></p>
+                                    <h4 id="j"><i class="ri-map-pin-line"></i> <%=data.name + ", " + data.sys.country  %></h4>
+                                    <script>
+                                        var dt = new Date();
+                                        document.getElementById("datetime").innerHTML = dt.toLocaleString();
+                                    </script>
+                                    <img src=<%=img %>>
+                                    <h1 id="degree"><%=data.main.temp  %> <span><i class="ri-celsius-fill"></i></span></h1> 
+                                    <h3><%=data.weather[0].main %></h3>
+                                    <h5>FEELS LIKE - <%=data.main.feels_like %></h5>
+                                    <i id="arrow" class="ri-arrow-right-s-line"></i>
+                                    <div id="c5">
+                                        <h1> Pressure <br><%=data.main.pressure + ` mb` %></h1>
+                                        <h1> Humidity <br><%=data.main.humidity + `%` %></h1>
+                                        <h1> wind <span><i class="ri-windy-line"></i></span><br><%=data.wind.speed + ` km/h` %></h1>
+                                        <h1> visibility <br><%=data.visibility + ` km` %></h1>
+                                     </div>
+                                 </div>
+                                 
+                               </div>
+                               
+                       
+                    <% }%>
+      
+                    <% if(error!==null){%>
+                    <p><%=error %></p>
+                    <% } %>
+                </div>
+            
+                <div class="weather-info">    
+                  <% if(data !== null){%>
+                <div id="c2">
+                  <div id="c3">
+                   
+                     <h4>CURRENT WEATHER</h4>
+                     <p> <span id="datetimee"></span></p>
+                     <h4 id="j"><i class="ri-map-pin-line"></i> <%=data.name + ", " + data.sys.country  %></h4>
+                     <script>
+                         var dt = new Date();
+                         document.getElementById("datetimee").innerHTML = dt.toLocaleString();
+                     </script>
+                     <img src=<%=img %>>
+                     <h1 id="degree"><%=data.main.temp  %> <span><i class="ri-celsius-fill"></i></span></h1> 
+                     <h3><%=data.weather[0].main %></h3>
+                     <h5>FEELS LIKE - <%=data.main.feels_like %></h5>
+                     <i id="arrow" class="ri-arrow-left-s-line"></i>
+                     <div id="c5">
+                       <h1> Temperature <br><%=data.main.temp + ` ℃` %></h1>
+                         <h1> Min-Temperature <br><%=data.main.temp_min + ` ℃` %></h1>
+                         <h1> Max-Temperature <br><%=data.main.temp_max+ ` ℃`%></h1>
+                        
+                         <h1> Clouds <br><%=data.clouds.all + `` %></h1>
+                      </div>
+                  </div>
+                  
+                </div>
+ 
+        
+     <% }%>
+
+     <% if(error!==null){%>
+     <p><%=error %></p>
+     <% } %>
+ </div> 
+        <script>
+          document.querySelector("#arrow").addEventListener("click", function(){
+            document.querySelector(".weather-info").style.marginTop="15vh";
+          })
+          document.querySelector(".ri-arrow-left-s-line").addEventListener("click", function(){
+            document.querySelector(".weather-info").style.marginTop="98vh";
+          });
+
+          const y = element.getBoundingClientRect().top + window.scrollY;
+window.scroll({
+  top: y,
+  behavior: 'smooth'
+});
+        </script>              
+  </body>
+     
+</html>
+
